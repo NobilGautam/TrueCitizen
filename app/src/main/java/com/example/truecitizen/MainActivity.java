@@ -5,6 +5,7 @@ import androidx.databinding.DataBindingUtil;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.truecitizen.databinding.ActivityMainBinding;
 import com.example.truecitizen.model.Questions;
@@ -30,17 +31,50 @@ public class MainActivity extends AppCompatActivity {
         binding.QuestionTextView.setText(questionBank[curr].getQuesId());
 
         binding.NextButton.setOnClickListener(v -> {
-            curr = (curr + 1) % questionBank.length;
+            incrementCurr();
             binding.QuestionTextView.setText(questionBank[curr].getQuesId());
         });
 
         binding.PrevButton.setOnClickListener(v -> {
-            curr--;
-            if (curr == 0) {
-                curr = questionBank.length;
-            }
+            decrementCurr();
             binding.QuestionTextView.setText(questionBank[curr].getQuesId());
         });
 
+        binding.TrueButton.setOnClickListener(v -> {
+            if (questionBank[curr].isAns() == true) {
+                Toast.makeText(binding.QuestionTextView.getContext(), R.string.correct_answer, Toast.LENGTH_SHORT)
+                        .show();
+            } else {
+                Toast.makeText(binding.QuestionTextView.getContext(), R.string.wrong_answer, Toast.LENGTH_SHORT)
+                        .show();
+            }
+            incrementCurr();
+        });
+
+        binding.FalseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (questionBank[curr].isAns() == false) {
+                    Toast.makeText(binding.QuestionTextView.getContext(), R.string.correct_answer, Toast.LENGTH_SHORT)
+                            .show();
+                } else {
+                    Toast.makeText(binding.QuestionTextView.getContext(), R.string.wrong_answer, Toast.LENGTH_SHORT)
+                            .show();
+                }
+                incrementCurr();
+            }
+        });
+
+    }
+
+    private void decrementCurr() {
+        curr--;
+        if (curr == 0) {
+            curr = questionBank.length;
+        }
+    }
+
+    private void incrementCurr() {
+        curr = (curr + 1) % questionBank.length;
     }
 }
