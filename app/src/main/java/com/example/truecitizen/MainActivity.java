@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
                         .show();
             }
             incrementCurr();
+            binding.QuestionTextView.setText(questionBank[curr].getQuesId());
         });
 
         binding.FalseButton.setOnClickListener(new View.OnClickListener() {
@@ -62,16 +63,19 @@ public class MainActivity extends AppCompatActivity {
                             .show();
                 }
                 incrementCurr();
+                binding.QuestionTextView.setText(questionBank[curr].getQuesId());
             }
         });
 
     }
 
     private void decrementCurr() {
-        curr--;
         if (curr == 0) {
-            curr = questionBank.length;
+            curr = questionBank.length-1;
+        }else {
+            curr--;
         }
+
     }
 
     private void incrementCurr() {
