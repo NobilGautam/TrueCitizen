@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">True Citizen</string>
+    <string name="father_of_nation">Mahatma Gandhi is the father of the nation.</string>
+    <string name="year_of_independence">India became independent in 1950.</string>
+    <string name="republic_day">India became a republic on 26 January 1987.</string>
+    <string name="oldest_civilization">Harappa civilization is the oldest civilazation in India.</string>
+    <string name="correct_answer">That is Correct!</string>
+    <string name="wrong_answer">That is wrong!</string>
 </resources>
